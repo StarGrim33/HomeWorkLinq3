@@ -37,7 +37,6 @@
         {
             string fullNameParameter = "patients.Name";
             string ageParameter = "patients.Age";
-            string diseaseParameter = "patients.Disease";
 
             if (parameter == fullNameParameter)
             {
@@ -60,7 +59,7 @@
             {
                 foreach (Patient patient in patients)
                 {
-                    Console.WriteLine(patient.Name);
+                    Console.WriteLine($"{patient.Name}, возраст: {patient.Age}, заболевание: {patient.Disease}");
                 }
 
                 Console.ReadKey();
@@ -69,7 +68,7 @@
             {
                 foreach (Patient patient in patients)
                 {
-                    Console.WriteLine(patient.Age);
+                    Console.WriteLine($"возраст: {patient.Age}, {patient.Name}, заболевание: {patient.Disease}");
                 }
 
                 Console.ReadKey();
@@ -144,8 +143,8 @@
             {
                 Console.Clear();
                 Console.WriteLine($"Здравствуйте, {Name}");
-                Console.WriteLine($"{CommandSortByFullName}-Посмотреть больных по ФИО");
-                Console.WriteLine($"{CommandSortByAge}-Посмотреть больных по возрасту");
+                Console.WriteLine($"{CommandSortByFullName}-Отсортировать больных по ФИО");
+                Console.WriteLine($"{CommandSortByAge}-Отсортировать больных по возрасту");
                 Console.WriteLine($"{CommandSortByDisease}-Посмотреть больных по болезням");
                 Console.WriteLine($"{CommandExit}-Выйти");
 
