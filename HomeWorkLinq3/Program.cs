@@ -133,8 +133,8 @@
             {
                 Console.Clear();
                 Console.WriteLine($"Здравствуйте, {Name}");
-                Console.WriteLine($"{CommandSortByFullName}-Отсортировать больных по ФИО");
-                Console.WriteLine($"{CommandSortByAge}-Отсортировать больных по возрасту");
+                Console.WriteLine($"{CommandSortByFullName}-Посмотреть больных по ФИО");
+                Console.WriteLine($"{CommandSortByAge}-Посмотреть больных по возрасту");
                 Console.WriteLine($"{CommandSortByDisease}-Посмотреть больных по болезням");
                 Console.WriteLine($"{CommandExit}-Выйти");
 
