@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            User user = new User();
+            User user = new();
             user.Run();
         }
     }
@@ -33,55 +33,49 @@
             _ills.Add(new Patient("Маслякова Анжелика Сергеевна", 61, "Сердечная недостаточость"));
         }
 
-        public void SortPatientByParameter(string parameter)
+        public void ShowPatientsByFullName()
         {
-            string fullNameParameter = "patients.Name";
-            string ageParameter = "patients.Age";
+            int index = 1;
 
-            if (parameter == fullNameParameter)
+            var orderedPatients = _ills.OrderBy(patient => patient.Name);
+
+            foreach(var orderedPatient in orderedPatients)
             {
-                var orderedPatients = _ills.OrderBy(patient => patient.Name);
-                ShowPatients(orderedPatients, parameter);
+                Console.WriteLine($"{index}.{orderedPatient.Name}, возраст: {orderedPatient.Age}, заболевание: {orderedPatient.Disease}");
+                index++;
             }
-            else if(parameter == ageParameter)
-            {
-                var orderedPatients = _ills.OrderBy(patient => patient.Age);
-                ShowPatients(orderedPatients, parameter);
-            }   
+
+            Console.ReadKey();
         }
 
-        public void ShowPatients(IOrderedEnumerable<Patient> patients, string parameter)
+        public void ShowPatientsByAge()
         {
-            string fullNameParameter = "patients.Name";
-            string ageParameter = "patients.Age";
+            int index = 1;
 
-            if (parameter == fullNameParameter)
+            var orderedPatients = _ills.OrderBy(patient => patient.Age);
+
+            foreach(var orderedPatient in orderedPatients)
             {
-                foreach (Patient patient in patients)
-                {
-                    Console.WriteLine($"{patient.Name}, возраст: {patient.Age}, заболевание: {patient.Disease}");
-                }
-
-                Console.ReadKey();
+                Console.WriteLine($"{index}.Возраст: {orderedPatient.Age}, {orderedPatient.Name}, заболевание: {orderedPatient.Disease}");
+                index++;
             }
-            else if (parameter == ageParameter)
-            {
-                foreach (Patient patient in patients)
-                {
-                    Console.WriteLine($"возраст: {patient.Age}, {patient.Name}, заболевание: {patient.Disease}");
-                }
 
-                Console.ReadKey();
-            }
+            Console.ReadKey();
         }
 
-        public void ShowByDisease(string userInput)
+        public void ShowPatientsByDisease()
         {
-            var patientsByDisease = _ills.Where(patient => patient.Disease == userInput).ToList();
+            int index = 1;
 
-            foreach (Patient patient in patientsByDisease)
+            Console.WriteLine("Введите заболевание: ");
+            string userInput = Console.ReadLine()!;
+
+            var patientByDisease = _ills.Where(patient => patient.Disease == userInput);
+
+            foreach (var orderedPatient in patientByDisease)
             {
-                Console.WriteLine($"Пациент: {patient.Name}, возраст: {patient.Age}, заболевание: {patient.Disease}");
+                Console.WriteLine($"{index}.{orderedPatient.Name}, возраст: {orderedPatient.Age}, заболевание: {orderedPatient.Disease}");
+                index++;
             }
 
             Console.ReadKey();
@@ -133,10 +127,6 @@
             const string CommandSortByDisease = "3";
             const string CommandExit = "4";
 
-            string fullNameParameter = "patients.Name";
-            string ageParameter = "patients.Age";
-            string diseaseParameter = "patients.Disease";
-
             bool isProgramOn = true;
 
             while (isProgramOn)
@@ -153,15 +143,15 @@
                 switch (userInput)
                 {
                     case CommandSortByFullName:
-                        ShowPatientsBy(fullNameParameter);
+                        _hospital.ShowPatientsByFullName();
                         break;
 
                     case CommandSortByAge:
-                        ShowPatientsBy(ageParameter);
+                        _hospital.ShowPatientsByAge();
                         break;
 
                     case CommandSortByDisease:
-                        ShowPatientsBy(diseaseParameter);
+                        _hospital.ShowPatientsByDisease();
                         break;
 
                     case CommandExit:
@@ -173,22 +163,6 @@
                         Console.ReadKey();
                         break;
                 }
-            }
-        }
-
-        private void ShowPatientsBy(string parameter)
-        {
-            string showByDisease = "patients.Disease";
-
-            if(parameter == showByDisease)
-            {
-                Console.WriteLine("Введите заболевание: ");
-                string? userInput = Console.ReadLine();
-                _hospital.ShowByDisease(userInput);
-            }
-            else
-            {
-                _hospital.SortPatientByParameter(parameter);
             }
         }
     }
