@@ -33,7 +33,7 @@
             _ills.Add(new Patient("Маслякова Анжелика Сергеевна", 61, "Сердечная недостаточость"));
         }
 
-        public void ShowPatientsByFullName()
+        public void ShowPatientsSortedByFullName()
         {
             int index = 1;
 
@@ -48,7 +48,7 @@
             Console.ReadKey();
         }
 
-        public void ShowPatientsByAge()
+        public void ShowPatientsSortedByAge()
         {
             int index = 1;
 
@@ -63,7 +63,7 @@
             Console.ReadKey();
         }
 
-        public void ShowPatientsByDisease()
+        public void ShowPatientsWithDisease()
         {
             int index = 1;
 
@@ -143,15 +143,15 @@
                 switch (userInput)
                 {
                     case CommandSortByFullName:
-                        _hospital.ShowPatientsByFullName();
+                        _hospital.ShowPatientsSortedByFullName();
                         break;
 
                     case CommandSortByAge:
-                        _hospital.ShowPatientsByAge();
+                        _hospital.ShowPatientsSortedByAge();
                         break;
 
                     case CommandSortByDisease:
-                        _hospital.ShowPatientsByDisease();
+                        _hospital.ShowPatientsWithDisease();
                         break;
 
                     case CommandExit:
